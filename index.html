@@ -598,9 +598,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 
 @media(max-width:820px){
-  .compare-header,.compare-row{grid-template-columns:1fr 1fr;}
-  .compare-header .col:nth-child(3),.compare-header .col:nth-child(4),
-  .compare-row .col:nth-child(3),.compare-row .col:nth-child(4){display:none;}
+  .compare-table{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .compare-header,.compare-row{min-width:680px;}
   .mobile-toggle{display:flex !important;}
 }
 
