@@ -1535,6 +1535,172 @@ h1,h2,h3{
   .bf-grid{gap:16px;}
   .mission-grid{gap:10px;}
 }
+
+/* ============================== */
+/* ANNUAL BAR CHART               */
+/* ============================== */
+.annual-chart-wrap{
+  max-width:960px;margin:0 auto 48px;
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:48px 40px 36px;
+  box-shadow:0 24px 64px -16px rgba(0,0,0,0.5);
+}
+@media(max-width:680px){.annual-chart-wrap{padding:32px 20px 28px;}}
+
+.ac-legend{
+  display:flex;gap:16px;margin-bottom:40px;
+}
+.ac-legend-item{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;
+  padding:6px 16px;border-radius:999px;
+  border:1px solid var(--line-soft);
+  color:var(--text-mute);
+}
+.ac-legend-item .ac-dot{
+  width:12px;height:12px;border-radius:3px;display:inline-block;
+}
+.ac-legend-item.rental .ac-dot{background:#666;}
+.ac-legend-item.keeper{color:var(--keeper-green);border-color:var(--keeper-green);}
+.ac-legend-item.keeper .ac-dot{background:var(--keeper-green);}
+
+.ac-chart{
+  display:flex;gap:0;align-items:stretch;
+}
+
+.ac-zone{
+  display:flex;gap:0;position:relative;
+}
+.ac-zone.mandatory{
+  flex:3;
+  background:rgba(255,122,26,0.05);
+  border:1px solid rgba(255,122,26,0.14);
+  border-radius:12px 0 0 0;
+  padding:16px 8px 48px;
+  position:relative;
+}
+.ac-zone.after{
+  flex:2;
+  padding:16px 8px 48px;
+  display:flex;gap:0;
+}
+.ac-mandatory-label{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:var(--keeper-green);font-weight:700;
+  letter-spacing:0.08em;white-space:nowrap;
+}
+
+.ac-year-group{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  position:relative;padding-top:56px;
+}
+.ac-badge-wrap{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  display:flex;justify-content:center;
+}
+.ac-savings-badge{
+  background:rgba(50,35,15,0.95);
+  border:1.5px solid var(--line);
+  color:var(--text-cream);
+  border-radius:50%;
+  width:52px;height:52px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;line-height:1.1;text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+.ac-savings-badge.top{
+  background:var(--keeper-green);
+  color:#1A0C00;
+  border-color:var(--keeper-green-deep);
+  box-shadow:0 8px 24px var(--keeper-green-glow);
+}
+.ac-savings-badge span{font-size:10px;font-weight:700;letter-spacing:0.04em;}
+
+.ac-bars{
+  display:flex;gap:6px;align-items:flex-end;
+  height:220px;
+  justify-content:center;
+  width:100%;max-width:88px;
+  position:relative;
+}
+.ac-bar{
+  width:38px;border-radius:6px 6px 0 0;
+  height:0;
+  transition:height 1.2s cubic-bezier(0.2,0.8,0.2,1);
+  position:relative;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.ac-bar.rental{background:linear-gradient(180deg,#888 0%,#555 100%);}
+.ac-bar.keeper-bar{background:linear-gradient(180deg,var(--keeper-green) 0%,var(--keeper-green-deep) 100%);}
+.ac-bar.zero-bar{
+  background:transparent;
+  border:2px dashed var(--keeper-green);
+  border-radius:6px;
+  height:48px !important;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  gap:2px;
+}
+
+.ac-amt{
+  position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+  font-family:'Pretendard','Pretendard Variable',sans-serif;
+  font-size:11px;font-weight:700;
+  white-space:nowrap;color:var(--text-soft);
+}
+.ac-bar.rental .ac-amt{color:var(--text-mute);}
+.ac-bar.keeper-bar .ac-amt{color:var(--keeper-green);}
+
+.ac-zero-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:16px;line-height:1;
+  color:var(--keeper-green);
+  letter-spacing:0.04em;
+}
+.ac-free-tag{
+  font-size:9px;font-weight:800;
+  color:var(--keeper-green);
+  letter-spacing:0.1em;text-transform:uppercase;
+}
+
+.ac-yr-label{
+  margin-top:12px;
+  font-family:'Pretendard','Pretendard Variable',sans-serif;
+  font-weight:700;font-size:14px;
+  color:var(--text-mute);letter-spacing:0.02em;
+  text-align:center;
+}
+
+.ac-keeper-line{
+  position:absolute;
+  left:0;right:0;
+  bottom:calc(48px + (220px * 0.615));
+  border-top:2px dashed rgba(255,122,26,0.35);
+  pointer-events:none;
+}
+
+/* 0원 강조 박스 */
+.ac-zero-emphasis{
+  max-width:960px;margin:0 auto 0;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:20px 32px;
+  background:linear-gradient(135deg,rgba(255,122,26,0.12),rgba(255,122,26,0.04));
+  border:1px solid var(--keeper-green);
+  border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);
+}
+.ac-zero-emphasis .z-icon{font-size:24px;}
+.ac-zero-emphasis .z-text{
+  font-weight:800;font-size:16px;color:var(--text-cream);
+}
+.ac-zero-emphasis .z-text span{color:var(--keeper-green);}
+@media(max-width:640px){
+  .ac-zero-emphasis{flex-direction:column;gap:8px;text-align:center;padding:16px 20px;}
+  .ac-zero-emphasis .z-text{font-size:14px;}
+}
 </style>
 </head>
 <body>
@@ -1848,73 +2014,120 @@ h1,h2,h3{
 <section class="section simulator">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>3년 비용 시뮬레이션</span>
-      <h2 style="margin-top:20px;">3년이면<br><span class="accent">추가 비용 0원</span>.</h2>
-      <p class="lead">CCTV 4대 기준, 렌탈과 구매의 실제 비용을 비교해 보세요.</p>
+      <span class="eyebrow"><span class="dot"></span>연간 납부금액 비교</span>
+      <h2 style="margin-top:20px;">키퍼 이용 시<br><span class="accent">3년에 약 90만원</span> 절약해요</h2>
+      <p class="lead">CCTV 4대 / 3년 의무약정 / 월 렌탈비 6만 5천원 기준</p>
     </div>
 
-    <div class="sim-grid reveal">
-      <!-- LOSER CARD -->
-      <div class="sim-card">
-        <div class="label">경쟁사 (렌탈형)</div>
-        <h3>끝나지 않는 비용</h3>
-        <div class="sim-bars">
-          <div class="sim-bar-row">
-            <span class="yr">3년차</span>
-            <div class="bar-track"><div class="bar-fill" data-w="60"></div></div>
-            <span class="amt">528,000원</span>
-          </div>
-          <div class="sim-bar-row danger">
-            <span class="yr">4년차</span>
-            <div class="bar-track"><div class="bar-fill" data-w="80"></div></div>
-            <span class="amt">+528,000원</span>
-          </div>
-          <div class="sim-bar-row danger">
-            <span class="yr">5년차</span>
-            <div class="bar-track"><div class="bar-fill" data-w="100"></div></div>
-            <span class="amt">+528,000원 ↑</span>
-          </div>
-        </div>
-        <div class="sim-total">
-          <div class="ttl-label">5년 누적 총비용</div>
-          <div class="ttl-num">2,640,000<span style="font-size:0.5em;">원~</span></div>
-          <div class="ttl-after">⚠ 약정 종료 후에도 비용은 계속됩니다.</div>
-        </div>
+    <div class="annual-chart-wrap reveal">
+      <!-- 범례 -->
+      <div class="ac-legend">
+        <div class="ac-legend-item rental"><span class="ac-dot"></span>렌탈 CCTV</div>
+        <div class="ac-legend-item keeper"><span class="ac-dot"></span>키퍼</div>
       </div>
 
-      <!-- WINNER CARD -->
-      <div class="sim-card win">
-        <div class="label">★ KEEPER (구매형)</div>
-        <h3>3년이면 진짜 끝</h3>
-        <div class="sim-bars">
-          <div class="sim-bar-row">
-            <span class="yr">3년차</span>
-            <div class="bar-track"><div class="bar-fill" data-w="100"></div></div>
-            <span class="amt">528,000원</span>
+      <!-- 차트 -->
+      <div class="ac-chart" style="position:relative;">
+
+        <!-- 키퍼 기준선 -->
+        <div class="ac-keeper-line"></div>
+
+        <!-- 의무약정기간: 1~3년 -->
+        <div class="ac-zone mandatory">
+
+          <!-- 1년 -->
+          <div class="ac-year-group">
+            <div class="ac-bars">
+              <div class="ac-bar rental" data-h="220">
+                <span class="ac-amt">78만원</span>
+              </div>
+              <div class="ac-bar keeper-bar" data-h="135">
+                <span class="ac-amt">48만원</span>
+              </div>
+            </div>
+            <div class="ac-yr-label">1년</div>
           </div>
-          <div class="sim-bar-row zero-row">
-            <span class="yr">4년차</span>
-            <div class="bar-track"><div class="bar-fill" data-w="0"></div></div>
-            <span class="amt">0원 ✓</span>
+
+          <!-- 2년 -->
+          <div class="ac-year-group">
+            <div class="ac-bars">
+              <div class="ac-bar rental" data-h="220">
+                <span class="ac-amt">78만원</span>
+              </div>
+              <div class="ac-bar keeper-bar" data-h="135">
+                <span class="ac-amt">48만원</span>
+              </div>
+            </div>
+            <div class="ac-yr-label">2년</div>
           </div>
-          <div class="sim-bar-row zero-row">
-            <span class="yr">5년차</span>
-            <div class="bar-track"><div class="bar-fill" data-w="0"></div></div>
-            <span class="amt">0원 ✓</span>
+
+          <!-- 3년 (누적 40% 절감 뱃지) -->
+          <div class="ac-year-group">
+            <div class="ac-badge-wrap">
+              <div class="ac-savings-badge">40%<br><span>절감</span></div>
+            </div>
+            <div class="ac-bars">
+              <div class="ac-bar rental" data-h="220">
+                <span class="ac-amt">78만원</span>
+              </div>
+              <div class="ac-bar keeper-bar" data-h="135">
+                <span class="ac-amt">48만원</span>
+              </div>
+            </div>
+            <div class="ac-yr-label">3년</div>
           </div>
+
+          <div class="ac-mandatory-label">*렌탈의무약정기간</div>
         </div>
-        <div class="sim-total">
-          <div class="ttl-label">5년 누적 총비용</div>
-          <div class="ttl-num">1,584,000<span style="font-size:0.5em;">원</span></div>
-          <div class="ttl-after">✓ 4년차부터 추가 비용 0원. 기기는 사장님 것.</div>
+
+        <!-- 약정 종료 후: 4~5년 -->
+        <div class="ac-zone after">
+
+          <!-- 4년 -->
+          <div class="ac-year-group">
+            <div class="ac-bars">
+              <div class="ac-bar rental" data-h="220">
+                <span class="ac-amt">78만원</span>
+              </div>
+              <div class="ac-bar zero-bar">
+                <div class="ac-zero-label">0원</div>
+                <div class="ac-free-tag">FREE</div>
+              </div>
+            </div>
+            <div class="ac-yr-label">4년</div>
+          </div>
+
+          <!-- 5년 (누적 63% 절감 뱃지) -->
+          <div class="ac-year-group">
+            <div class="ac-badge-wrap">
+              <div class="ac-savings-badge top">63%<br><span>절감</span></div>
+            </div>
+            <div class="ac-bars">
+              <div class="ac-bar rental" data-h="220">
+                <span class="ac-amt">78만원</span>
+              </div>
+              <div class="ac-bar zero-bar">
+                <div class="ac-zero-label">0원</div>
+                <div class="ac-free-tag">FREE</div>
+              </div>
+            </div>
+            <div class="ac-yr-label">5년</div>
+          </div>
+
         </div>
       </div>
+    </div>
+
+    <!-- 0원 강조 -->
+    <div class="ac-zero-emphasis reveal">
+      <span class="z-icon">🎉</span>
+      <div class="z-text">4년차부터 키퍼는 <span>추가 비용 0원</span> — 렌탈은 그 이후에도 매년 78만원이 나갑니다.</div>
     </div>
 
     <div class="sim-savings reveal">
-      <div class="lbl">5년 기준 절감액</div>
-      <div class="num">1,056,000원 절약</div>
-      <div class="desc">동일 매장 4대 기준, <b>5년이면 100만 원 이상</b> 차이납니다.<br>사용할수록 커지는 격차 — 망사용료는 멈추지 않으니까요.</div>
+      <div class="lbl">5년 기준 누적 절감액</div>
+      <div class="num">약 246만원 절약</div>
+      <div class="desc">동일 매장 4대 기준, <b>사용할수록 커지는 격차</b>.<br>렌탈 망사용료는 멈추지 않고, 키퍼는 3년이면 완전히 끝납니다.</div>
     </div>
   </div>
 </section>
@@ -2280,22 +2493,23 @@ window.addEventListener('load', () => {
   }, 100);
 });
 
-// Animate sim bars on viewport entry
-const simObserver = new IntersectionObserver((entries) => {
+// Animate annual chart bars on viewport entry
+const acObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const bars = entry.target.querySelectorAll('.bar-fill');
+      const bars = entry.target.querySelectorAll('.ac-bar[data-h]');
       bars.forEach((bar, i) => {
         setTimeout(() => {
-          bar.style.width = bar.dataset.w + '%';
-        }, i * 120 + 200);
+          bar.style.height = bar.dataset.h + 'px';
+        }, i * 100 + 150);
       });
-      simObserver.unobserve(entry.target);
+      acObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.sim-card').forEach(el => simObserver.observe(el));
+const acWrap = document.querySelector('.annual-chart-wrap');
+if (acWrap) acObserver.observe(acWrap);
 </script>
 
 </body>
